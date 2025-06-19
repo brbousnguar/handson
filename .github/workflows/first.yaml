@@ -1,0 +1,28 @@
+name: hello
+
+on: [push]
+
+# Job => Step => Action
+jobs:
+  job1:
+    name: First job
+    runs-on: ubuntu-latest
+    steps:
+    - name: Step One
+      #q: explain this uses: actions/checkout@v2
+      # A: This line specifies that the job will use the 'checkout' action from the 'actions' repository, version 2.
+      # It checks out the repository so that the workflow can access its contents.
+      uses: actions/checkout@v2
+    - name: Step Two
+      run: env | sort
+  job2:
+    name: Second job
+    runs-on: windows-latest
+    steps:
+    - name: Step One
+      uses: actions/checkout@v2
+    - name: Step Two
+      run: "Get-ChildItem Env: | Sort-Object Name"
+
+
+
